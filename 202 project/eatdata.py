@@ -10,7 +10,7 @@ def distance_array(arr, n):
             #euclidean distance
             dist_arr[i][j] = math.sqrt((node_table[j][1]- node_table[i][1])**2 + (node_table[j][2]- node_table[i][2])**2)
 
-    print(dist_arr)
+    #print(dist_arr)
 
     return dist_arr
 
@@ -37,5 +37,5 @@ for i in range(1, n+1):
     else:
         node_table[i-1] = (id, x, y, None)
     
-    print(node_table[i-1])
-distance_array(node_table, n)
+    #print(node_table[i-1])
+dist_arr = distance_array(node_table, n)

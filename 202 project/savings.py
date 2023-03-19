@@ -1,15 +1,12 @@
 import eatdata
+D = eatdata.dist_arr
+d = []*eatdata.n
+for i in range(0,eatdata.n):
+    print(i)
+    d[i] = eatdata.node_table[i]
 
-class Location:
-    weight = 0
-    angle = 0.0
+print(d)
     
-    def __init__(self, id, x, y, weight):
-        self.id = id
-        self.x = x
-        self.y = y
-        self.weight = weight
-
 
 def compute_savings(D):
     N = len(D)
@@ -93,4 +90,5 @@ def parallel_savings_init(D, d, C):
         
     return routes
   
+#parallel_savings_init(D, d, 4500)
 

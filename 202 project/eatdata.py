@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 # Reading the data inside the xml
 # file to a variable under the name
 # data
-with open('n013-k04.xml', 'r') as f:
+with open('n030-k03.xml', 'r') as f:
     data = f.read()
  
 # Passing the stored data inside

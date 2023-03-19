@@ -1,3 +1,5 @@
+import eatdata
+
 class Location:
     weight = 0
     angle = 0.0

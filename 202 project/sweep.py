@@ -23,14 +23,17 @@ class Location:
         self.x = x
         self.y = y
         self.weight = weight
-    
+
+def sort_locations(node_arr):
+    node_arr.sort(key=lambda x: x.angle)
+    return node_arr
     
 depot_x = 0
 depot_y = 1
 
 #dummy data
-loc_data = [[-3,3], [3,-3], [-3,-3], [3,3]]
-loc_weight = [2,2,2,2]
+loc_data = [[-3,3], [3,-3], [-3,-3], [3,3], [2,3],[2,2]]
+loc_weight = [2,2,2,2,2,2]
 
 node_arr = []
 print("Angle UNSORTED")
@@ -42,7 +45,53 @@ for i in range(len(loc_weight)):
     
 print()
 print("Angle sorted")
-node_arr.sort(key=lambda x: x.angle)
+
+sort_nodes = sort_locations(node_arr)
+
 for i in range(len(loc_weight)):
-    print(node_arr[i].angle)
+    print(sort_nodes[i].angle)
+    
+#assigning vehicles
+#vehicle capacity, ask for the input later
+veh_input = 5
+veh_cap = veh_input
+
+veh_agnmt = []
+one_veh = []
+counter = 0
+
+for i in range(len(loc_weight)):
+    
+    if((veh_cap - sort_nodes[i].weight < 0)):
+        
+        veh_agnmt.append(one_veh)
+        veh_cap = veh_input
+        one_veh.clear()
+        counter += 1
+        
+        one_veh.append(sort_nodes[i])
+        veh_cap -= sort_nodes[i].weight
+        
+        print("one_veh ", one_veh)
+        print("veh_cap: ", veh_cap, " weight of one node: ", sort_nodes[i].weight, "\n")
+        
+    elif(veh_cap - sort_nodes[i].weight >= 0 or (i == len(loc_weight)-1)):
+        
+        one_veh.append(sort_nodes[i])
+        veh_cap -= sort_nodes[i].weight
+        
+        print("veh_cap: ", veh_cap, " weight of one node: ", sort_nodes[i].weight, "\n")
+        
+        if((veh_cap - sort_nodes[i].weight == 0) or (i == len(loc_weight)-1)):
+            
+            veh_agnmt.append(one_veh)
+            veh_cap = veh_input
+            one_veh.clear()
+            counter += 1
+            
+            print("one_veh ", one_veh)
+    
+print(len(veh_agnmt))
+
+#check if it is correct
 

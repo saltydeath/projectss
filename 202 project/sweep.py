@@ -1,5 +1,6 @@
 import math
 
+
 def angle_of_vectors(depot_x, depot_y, loc_x ,loc_y):
     
      dotProduct = depot_x*loc_x + depot_y*loc_y

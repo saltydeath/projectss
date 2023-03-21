@@ -22,7 +22,10 @@ with open('n030-k03.xml', 'r') as f:
 # Passing the stored data inside the beautifulsoup parser, storing the returned object
 Bs_data = BeautifulSoup(data, "xml")
 n = len(Bs_data.find_all('node'))
-
+fleet = Bs_data.find('fleet')
+veh_prof = fleet.find('vehicle_profile')
+veh_cap = veh_prof.find('capacity').text
+#print(veh_cap)
 # print(b_node)
 node_table = [None]*n
 for i in range(1, n+1):

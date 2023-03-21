@@ -1,12 +1,12 @@
+
 import eatdata
 D = eatdata.dist_arr
-d = []*eatdata.n
+d = [0]*eatdata.n
 for i in range(0,eatdata.n):
-    print(i)
     d[i] = eatdata.node_table[i]
 
-print(d)
-    
+#print(d)
+
 
 def compute_savings(D):
     N = len(D)

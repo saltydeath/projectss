@@ -25,6 +25,8 @@ n = len(Bs_data.find_all('node'))
 fleet = Bs_data.find('fleet')
 veh_prof = fleet.find('vehicle_profile')
 veh_cap = veh_prof.find('capacity').text
+source_node = veh_prof.find('departure_node').text
+
 #print(veh_cap)
 # print(b_node)
 node_table = [None]*n

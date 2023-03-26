@@ -68,7 +68,7 @@ for i in range(1, len(node_t)):
         
         veh_agnmt.append(one_veh)
         veh_cap = veh_input
-        one_veh.clear()
+        one_veh = []
         counter += 1
         
         one_veh.append(sort_nodes[i])
@@ -85,10 +85,10 @@ for i in range(1, len(node_t)):
         #print("veh_cap: ", veh_cap, " weight of one node: ", sort_nodes[i].weight, "\n")
         
         if((veh_cap - sort_nodes[i].weight == 0) or (i == len(node_t)-1)):
-            
+            print(veh_agnmt)
             veh_agnmt.append(one_veh)
             veh_cap = veh_input
-            one_veh.clear()
+            one_veh = []
             counter += 1
             
             #print("one_veh ", one_veh)

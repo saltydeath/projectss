@@ -62,12 +62,13 @@ one_veh = []
 counter = 0
 
 for i in range(len(loc_weight)):
+    
     print("veh_agnmt: ", veh_agnmt)
     if((veh_cap - sort_nodes[i].weight < 0)):
         
         veh_agnmt.append(one_veh)
         veh_cap = veh_input
-        one_veh.clear()
+        one_veh = []
         counter += 1
         
         one_veh.append(sort_nodes[i])
@@ -81,19 +82,22 @@ for i in range(len(loc_weight)):
         one_veh.append(sort_nodes[i])
         veh_cap -= sort_nodes[i].weight
         
-        print("veh_cap: ", veh_cap, " weight of one node: ", sort_nodes[i].weight, "\n")
+        #print("veh_cap: ", veh_cap, " weight of one node: ", sort_nodes[i].weight, "\n")
         
         if((veh_cap - sort_nodes[i].weight == 0) or (i == len(loc_weight)-1)):
-            print("before adding one_veh", one_veh)
+            #print("before adding one_veh", one_veh)
             
             veh_agnmt.append(one_veh)
             
-            print("after adding one_veh, veh_agnmt", veh_agnmt)
+            #print("after adding one_veh, veh_agnmt", veh_agnmt)
             veh_cap = veh_input
-            one_veh.clear()
+            one_veh = []
+            #print("after clearing", veh_agnmt)
+            
             counter += 1
             
             #print("one_veh ", one_veh)
+        
     
 print(len(veh_agnmt))
 print("veh_agnmt: ", veh_agnmt)

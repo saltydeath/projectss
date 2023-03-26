@@ -95,9 +95,7 @@ for i in range(1, len(node_t)):
     
 print("Minimum Number of Vehicles is:")
 print(len(veh_agnmt))
-
-
-
+print(veh_agnmt)
 
 print("Travelling Salesman Sample: Incomplete")
 

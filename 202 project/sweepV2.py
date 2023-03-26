@@ -9,7 +9,7 @@ node_t = eatdata.node_table
 for i in range(0,eatdata.n):
     d[i] = eatdata.node_table[i]
 
-#print(d)
+#print(D)
 
 def angle_of_vectors(depot_x, depot_y, loc_x ,loc_y):
     
@@ -66,26 +66,27 @@ for i in range(1, len(node_t)):
     
     if((veh_cap - sort_nodes[i].weight < 0)):
         
+        one_veh.append(1)
         veh_agnmt.append(one_veh)
         veh_cap = veh_input
         one_veh = []
         counter += 1
         
-        one_veh.append(sort_nodes[i])
+        one_veh.append(int(sort_nodes[i].id))
         veh_cap -= sort_nodes[i].weight
         
         # print("one_veh ", one_veh)
         # print("veh_cap: ", veh_cap, " weight of one node: ", sort_nodes[i].weight, "\n")
         
     elif(veh_cap - sort_nodes[i].weight >= 0 or (i == len(node_t)-1)):
-        
-        one_veh.append(sort_nodes[i])
+        one_veh.append(int(sort_nodes[i].id))
         veh_cap -= sort_nodes[i].weight
         
         #print("veh_cap: ", veh_cap, " weight of one node: ", sort_nodes[i].weight, "\n")
         
         if((veh_cap - sort_nodes[i].weight == 0) or (i == len(node_t)-1)):
-            print(veh_agnmt)
+            #print(veh_agnmt)
+            one_veh.append(1)
             veh_agnmt.append(one_veh)
             veh_cap = veh_input
             one_veh = []
@@ -95,37 +96,30 @@ for i in range(1, len(node_t)):
     
 print("Minimum Number of Vehicles is:")
 print(len(veh_agnmt))
-print(veh_agnmt)
+for i in range(len(veh_agnmt)):
+    print("One Vehicle carries:")
+    print(veh_agnmt[i])
+
 
 print("Travelling Salesman Sample: Incomplete")
-
-V = 4
 min_perm = 0
 
-# def travellingSalesmanProblem(graph, s):
-# 	vertex = []
-# 	for i in range(V):
-# 		if i != s:
-# 			vertex.append(i)
+def travellingSalesmanProblem(dist_arr, indexes, start):
 
-# 	min_path = maxsize
-# 	next_permutation=permutations(vertex)
-    
-# 	for i in next_permutation:
-# 		current_pathweight = 0
-# 		k = s
-# 		for j in i:
-# 			current_pathweight += graph[k][j]
-# 			k = j
-# 		current_pathweight += graph[k][s]
-# 		min_path = min(min_path, current_pathweight)
-#         min_perm = list(i)
-		
-# 	return min_path
+	vertex = indexes
 
+	min_path = maxsize
+	next_permutation=permutations(vertex)
+	for i in next_permutation:
+		print(i)
+		current_pathweight = 0
+		k = start
+		for j in i:
+			current_pathweight += dist_arr[k][j]
+			k = j
+		current_pathweight += dist_arr[k][start]
+		min_path = min(min_path, current_pathweight)
+	return min_path
 
-# if __name__ == "__main__":
-# 	graph = [[0, 10, 15, 20], [10, 0, 35, 25],
-# 			[15, 35, 0, 30], [20, 25, 30, 0]]
-# 	s = 0
-# 	print(travellingSalesmanProblem(graph, s))
+# path = travellingSalesmanProblem(D, veh_agnmt[0], veh_agnmt[0][0])
+# print(path)

@@ -1,12 +1,5 @@
 
 import eatdata
-D = eatdata.dist_arr
-d = [0]*eatdata.n
-for i in range(0,eatdata.n):
-    d[i] = eatdata.node_table[i]
-
-#print(d)
-
 
 def compute_savings(D):
     N = len(D)
@@ -15,8 +8,8 @@ def compute_savings(D):
     idx = 0
     for i in range(1,N):
         for j in range(i+1,N):
-            saving = D[i,0]+D[0,j]-D[i,j]
-            savings_table[idx] = (saving,-D[i,j],i,j)
+            saving = D[i][0]+D[0][j]-D[i][j]
+            savings_table[idx] = (saving,-D[i][j],i,j)
             idx+=1
     savings_table.sort(reverse=True)
     return savings_table
@@ -31,8 +24,8 @@ def parallel_savings_init(D, d, C):
     
     ## 1. make route for each customer
     routes = [[i] for i in range(1,N)] #(N-1)x(N-1) "2D array"
-    route_demands = d[1:] if C else [0]*N
-    route_costs = [D[0,i]+D[i,0] for i in range(1,N)] 
+    route_demands = d
+    route_costs = [D[0][i]+D[i][0] for i in range(1,N)] 
     
     ## 2. compute initial savings 
     savings_table = compute_savings(D)
@@ -62,7 +55,7 @@ def parallel_savings_init(D, d, C):
         if merged_demand > C:
             continue
 
-        merged_cost = route_costs[left_route]-D[0,i]+route_costs[right_route]-D[0,j]+D[i,j]
+        merged_cost = route_costs[left_route]-D[0][i]+route_costs[right_route]-D[0][j]+D[i][j]
 
         # update bookkeeping only on the recieving (left) route
         route_demands[left_route] = merged_demand
@@ -89,6 +82,14 @@ def parallel_savings_init(D, d, C):
         routes[right_route] = None    
         
     return routes
-  
-#parallel_savings_init(D, d, 4500)
 
+D = eatdata.dist_arr
+d = [0]*eatdata.n
+for i in range(1,eatdata.n):
+    d[i] = float(eatdata.node_table[i][3])
+    #print(d[i])
+
+result = parallel_savings_init(D, d, 4500.00)
+for i in range(0, len(result)):
+    if result[i] != None:
+        print(result[i])

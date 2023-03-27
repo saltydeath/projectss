@@ -41,20 +41,23 @@ def sort_locations(node_arr):
 
 def travellingSalesmanProblem(dist_arr, indexes, start):
 
-	vertex = indexes
-
-	min_path = maxsize
-	next_permutation=permutations(vertex)
-	for i in next_permutation:
-		#print(i)
-		current_pathweight = 0
-		k = start
-		for j in i:
-			current_pathweight += dist_arr[k - 1][j - 1]
-			k = j
-		current_pathweight += dist_arr[k - 1][start]
-		min_path = min(min_path, current_pathweight)
-	return min_path
+    retArray = [0,[]]
+    vertex = indexes
+    min_path = maxsize
+    
+    next_permutation=permutations(vertex)
+    for i in next_permutation:
+        print(i)
+        current_pathweight = 0
+        k = start
+        for j in i:
+            current_pathweight += dist_arr[k - 1][j - 1]
+            k = j
+        current_pathweight += dist_arr[k - 1][start]
+        min_path = min(min_path, current_pathweight)
+        retArray[0] = min_path
+        #if (min)
+    return retArray
 
 
 # #dummy data
@@ -130,8 +133,9 @@ print("Travelling Salesman Sample: Incomplete")
 min_perm = 0
 
 minDist = []
-for i in range(len(veh_agnmt)):
-    oneVehDist = travellingSalesmanProblem(D, veh_agnmt[i], source_node)
-    minDist.append(oneVehDist)
+# for i in range(len(veh_agnmt)):
+#     oneVehDist = travellingSalesmanProblem(D, veh_agnmt[i], source_node)
+#     minDist.append(oneVehDist)
 
-print(minDist)
+oneVehDist = travellingSalesmanProblem(D, veh_agnmt[2], source_node)
+print(oneVehDist[0])

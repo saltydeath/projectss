@@ -23,8 +23,7 @@ def parallel_savings_init(D, d, C):
     N = len(D)
     
     ## 1. make route for each customer
-    routes = [[i] for i in range(1,N)] #(N-1)x(N-1) "2D array"
-    print(routes)
+    routes = [[i] for i in range(2,N+1)] #(N-1)x(N-1) "2D array"
     route_demands = d
     route_costs = [D[0][i]+D[i][0] for i in range(1,N)] 
     
@@ -66,19 +65,19 @@ def parallel_savings_init(D, d, C):
             
         # merging is done based on the joined endpoints, reverse the 
         #  merged routes as necessary
-        if routes[left_route][0]==i:
+        if routes[left_route][0]==(i+1):
             routes[left_route].reverse()
-        if routes[right_route][-1]==j:
+        if routes[right_route][-1]==(j+1):
             routes[right_route].reverse()
 
         # the nodes that become midroute points cannot be merged
         if len(routes[left_route])>1:
-            endnode[ routes[left_route][-1] ] = None
+            endnode[ (routes[left_route][-1] ) -1] = None
         if len(routes[right_route])>1:
-            endnode[ routes[right_route][0] ] = None
+            endnode[ (routes[right_route][0])-1 ] = None
         
         # all future references to right_route are to merged route
-        endnode[routes[right_route][-1] ] = left_route
+        endnode[(routes[right_route][-1]) - 1] = left_route
         
         # merge with list concatenation
         routes[left_route].extend( routes[right_route] )

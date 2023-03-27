@@ -47,7 +47,7 @@ def travellingSalesmanProblem(dist_arr, indexes, start):
     
     next_permutation=permutations(vertex)
     for i in next_permutation:
-        print(i)
+        #print(i)
         current_pathweight = 0
         k = start
         for j in i:
@@ -56,7 +56,10 @@ def travellingSalesmanProblem(dist_arr, indexes, start):
         current_pathweight += dist_arr[k - 1][start]
         min_path = min(min_path, current_pathweight)
         retArray[0] = min_path
-        #if (min)
+        
+        if (min_path == current_pathweight):
+            retArray[1] = i
+            #print(i)
     return retArray
 
 
@@ -138,4 +141,20 @@ minDist = []
 #     minDist.append(oneVehDist)
 
 oneVehDist = travellingSalesmanProblem(D, veh_agnmt[2], source_node)
+print("Unappended Depot")
 print(oneVehDist[0])
+print(oneVehDist[1])
+
+
+#oneVehDist[1][-1]
+# print(D[source_node][oneVehDist[1][-1]])
+# print(D[oneVehDist[1][-1]][source_node])
+# print(oneVehDist[1][-1])
+
+oneVehDist[0] = oneVehDist[0] + D[oneVehDist[1][-1]][source_node]
+oneVehDist[1] = oneVehDist[1] + (source_node,)
+
+print("\nAppended Depot")
+print(oneVehDist[0])
+print(oneVehDist[1])
+

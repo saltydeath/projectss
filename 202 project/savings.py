@@ -59,7 +59,9 @@ def parallel_savings_init(D, d, C):
 
         # update bookkeeping only on the recieving (left) route
         route_demands[left_route] = merged_demand
+        route_demands[right_route] = None
         route_costs[left_route] = merged_cost
+        route_costs[right_route] = None
             
         # merging is done based on the joined endpoints, reverse the 
         #  merged routes as necessary
@@ -75,13 +77,21 @@ def parallel_savings_init(D, d, C):
             endnode[ routes[right_route][0] ] = None
         
         # all future references to right_route are to merged route
-        endnode[ routes[right_route][-1] ] = left_route
+        endnode[routes[right_route][-1] ] = left_route
         
         # merge with list concatenation
         routes[left_route].extend( routes[right_route] )
         routes[right_route] = None    
         
-    return routes
+
+    for i in range(0, len(routes)):
+     if routes[i] != None:
+        # for j in range(0,len(routes[i])):
+        #     print(routes[i][j] + 1, end=' ')
+        print(routes[i])
+        print(route_costs[i])
+        print(route_demands[i])
+    return 
 
 D = eatdata.dist_arr
 d = [0]*eatdata.n
@@ -89,7 +99,7 @@ for i in range(1,eatdata.n):
     d[i] = float(eatdata.node_table[i][3])
     #print(d[i])
 
-result = parallel_savings_init(D, d, 4500.00)
-for i in range(0, len(result)):
-    if result[i] != None:
-        print(result[i])
+parallel_savings_init(D, d, 4500.00)
+# for i in range(0, len(result)):
+#     if result[i] != None:
+#         print(result[i])

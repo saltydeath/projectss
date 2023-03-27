@@ -249,6 +249,9 @@ for i in range(len(veh_agnmt)):
     print("One Vehicle carries:")
     print(veh_agnmt[i])
 
+print()
+print()
+
 minDist = []
 nodestoRemove = []
 new_graph = []
@@ -260,7 +263,6 @@ for i in range(len(veh_agnmt)):
         if(not (j in veh_agnmt[i])):
             nodestoRemove.append(j-1)
     #nodestoRemove = [2,4]    
-    print(veh_agnmt[i])   
 
     new_graph = [[D[a][b] for b in range(len(D[a])) if b not in nodestoRemove] for a in range(len(D)) if a not in nodestoRemove]
     
@@ -281,13 +283,19 @@ for i in range(len(veh_agnmt)):
     final_res = maxsize
 
     TSP(new_graph, N)
+    veh_agnmt[i].sort()
+    ascList = veh_agnmt[i]
 
-    print("Minimum cost :", final_res)
+    final_node_path = []
+    for m in final_path:
+        final_node_path.append(ascList[m])
+
+    print("Minimum total distance cost :", final_res)
     print("Path Taken : ", end = ' ')
-    for i in range(N + 1):
-        print(final_path[i], end = ' ')
+    for n in range(N + 1):
+        print(final_node_path[n], end = ' ')
+    print("\n")
     
-    print()
     
 
 

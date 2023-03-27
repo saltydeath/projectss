@@ -136,33 +136,33 @@ print("Travelling Salesman Sample: Incomplete")
 min_perm = 0
 
 minDist = []
-# for i in range(len(veh_agnmt)):
-#     oneVehDist = travellingSalesmanProblem(D, veh_agnmt[i], source_node)
-#     print("Unappended Depot")
-#     print(oneVehDist[0])
-#     print(oneVehDist[1])
+for i in range(len(veh_agnmt)):
+    oneVehDist = travellingSalesmanProblem(D, veh_agnmt[i], source_node)
+    print("Unappended Depot")
+    print(oneVehDist[0])
+    print(oneVehDist[1])
     
-#     oneVehDist[0] = oneVehDist[0] + D[(oneVehDist[1][-1])-1][source_node-1]
-#     oneVehDist[1] = oneVehDist[1] + (source_node,)
-#     print("\nAppended Depot")
-#     print(oneVehDist[0])
-#     print(oneVehDist[1])
+    oneVehDist[0] = oneVehDist[0] + D[(oneVehDist[1][-1])-1][source_node-1]
+    oneVehDist[1] = oneVehDist[1] + (source_node,)
+    print("\nAppended Depot")
+    print(oneVehDist[0])
+    print(oneVehDist[1])
 
-oneVehDist = travellingSalesmanProblem(D, veh_agnmt[2], source_node)
-print("Unappended Depot")
-print(oneVehDist[0])
-print(oneVehDist[1])
+# oneVehDist = travellingSalesmanProblem(D, veh_agnmt[2], source_node)
+# print("Unappended Depot")
+# print(oneVehDist[0])
+# print(oneVehDist[1])
 
 
-oneVehDist[1][-1]
+#oneVehDist[1][-1]
 print(D[source_node][oneVehDist[1][-1]])
 print(D[oneVehDist[1][-1]][source_node])
-print(oneVehDist[1][-1])
+# print(oneVehDist[1][-1])
 
-oneVehDist[0] = oneVehDist[0] + D[oneVehDist[1][-1]][source_node]
-oneVehDist[1] = oneVehDist[1] + (source_node,)
+# oneVehDist[0] = oneVehDist[0] + D[oneVehDist[1][-1]][source_node]
+# oneVehDist[1] = oneVehDist[1] + (source_node,)
 
-print("\nAppended Depot")
-print(oneVehDist[0])
-print(oneVehDist[1])
+# print("\nAppended Depot")
+# print(oneVehDist[0])
+# print(oneVehDist[1])
 

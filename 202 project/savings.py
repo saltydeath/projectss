@@ -57,9 +57,7 @@ def parallel_savings_init(D, d, C):
             continue
 
         merged_cost = route_costs[left_route]-D[0][i]+route_costs[right_route]-D[0][j]+D[i][j]
-        print(routes)
-    
-        print(route_costs)
+
         # update bookkeeping only on the recieving (left) route
         route_demands[left_route] = merged_demand
         route_demands[right_route] = None

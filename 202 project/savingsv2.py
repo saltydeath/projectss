@@ -111,7 +111,7 @@ start_time = time.perf_counter()
 D = eatdata.dist_arr
 d = [0]*eatdata.n
 for i in range(1,eatdata.n):
-    d[i] = float(eatdata.node_table[i][3])
+    d[i-1] = float(eatdata.node_table[i][3])
     #print(d[i])
 
 parallel_savings_init(D, d, float(eatdata.veh_cap))

@@ -133,10 +133,33 @@ for i in range(len(veh_agnmt)):
 
 
 
-graph = [[0,1,2,3], [1,0,2,3], [2,2,0,3], [3,3,3,0]]  # Given 2D array representing a graph
-node_to_remove = 1  # Index of the node to be removed
+graph = [[0,1,2,3,5], [1,0,2,3,5], [2,2,0,3,5], [3,3,3,0,5], [5,5,5,5,0]]  # Given 2D array representing a graph
+
+nodestoRemove = []
+new_graph = []
+
+print()
+
+for i in range(len(veh_agnmt)):
+    
+    # POPULATE THE NODES TO REMOVE
+    for j in range(1, eatdata.n+1):
+        if(not (j in veh_agnmt[i])):
+            nodestoRemove.append(j-1)
+    #nodestoRemove = [2,4]       
+    print(nodestoRemove)
+    
+    new_graph = [[D[a][b] for b in range(len(D[a])) if b not in nodestoRemove] for a in range(len(D)) if a not in nodestoRemove]
+    
+    print(new_graph)
+    print()
+    
+    nodestoRemove = []
+    
+    
 
 # Create a new 2D array without the node to be removed
-new_graph = [[graph[i][j] for j in range(len(graph[i])) if j != node_to_remove] for i in range(len(graph)) if i != node_to_remove]
+#new_graph = [[graph[i][j] for j in range(len(graph[i])) if j != node_to_remove] for i in range(len(graph)) if i != node_to_remove]
 
-print(new_graph)  # Output: [[0, 2], [2, 0]]
+#new_graph = [[D[i][j] for j in range(len(D[i])) if j != node_to_remove] for i in range(len(D)) if i != node_to_remove]
+#print(new_graph)  # Output: [[0, 2], [2, 0]]

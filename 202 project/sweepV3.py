@@ -2,6 +2,7 @@ import math
 import eatdata
 from sys import maxsize
 from itertools import permutations
+from typing import DefaultDict
 
 D = eatdata.dist_arr
 d = [0]*eatdata.n
@@ -39,28 +40,67 @@ def sort_locations(node_arr):
     node_arr.sort(key=lambda x: x.angle)
     return node_arr
 
-def travellingSalesmanProblem(dist_arr, indexes, start):
-
-    retArray = [0,[]]
-    vertex = indexes
-    min_path = maxsize
+INT_MAX = 2147483647
+ 
+# Function to find the minimum
+# cost path for all the paths
+def findMinRoute(tsp):
+    sum = 0
+    counter = 0
+    j = 0
+    i = 0
+    min = INT_MAX
+    visitedRouteList = DefaultDict(int)
+ 
+    # Starting from the 0th indexed
+    # city i.e., the first city
+    visitedRouteList[0] = 1
+    route = [0] * len(tsp)
+ 
+    # Traverse the adjacency
+    # matrix tsp[][]
+    while i < len(tsp) and j < len(tsp[i]):
+ 
+        # Corner of the Matrix
+        if counter >= len(tsp[i]) - 1:
+            break
+ 
+        # If this path is unvisited then
+        # and if the cost is less then
+        # update the cost
+        if j != i and (visitedRouteList[j] == 0):
+            if tsp[i][j] < min:
+                min = tsp[i][j]
+                route[counter] = j + 1
+ 
+        j += 1
+ 
+        # Check all paths from the
+        # ith indexed city
+        if j == len(tsp[i]):
+            sum += min
+            min = INT_MAX
+            visitedRouteList[route[counter] - 1] = 1
+            j = 0
+            i = route[counter] - 1
+            counter += 1
+ 
+    # Update the ending city in array
+    # from city which was last visited
+    i = route[counter - 1] - 1
+ 
+    for j in range(len(tsp)):
+ 
+        if (i != j) and tsp[i][j] < min:
+            min = tsp[i][j]
+            route[counter] = j + 1
     
-    next_permutation=permutations(vertex)
-    for i in next_permutation:
-        #print(i)
-        current_pathweight = 0
-        k = start
-        for j in i:
-            current_pathweight += dist_arr[k - 1][j - 1]
-            k = j
-        current_pathweight += dist_arr[k - 1][start-1]
-        min_path = min(min_path, current_pathweight)
-        retArray[0] = min_path
-        
-        if (min_path == current_pathweight):
-            retArray[1] = i
-            #print(i)
-    return retArray
+    print(route)
+    sum += min
+ 
+    # Started from the node where
+    # we finished as well.
+    print("Minimum Cost is :", sum)
 
 
 # #dummy data
@@ -136,33 +176,25 @@ print("Travelling Salesman Sample: Incomplete")
 min_perm = 0
 
 minDist = []
+nodestoRemove = []
+new_graph = []
+
 for i in range(len(veh_agnmt)):
-    oneVehDist = travellingSalesmanProblem(D, veh_agnmt[i], source_node)
-    print("Unappended Depot")
-    print(oneVehDist[0])
-    print(oneVehDist[1])
     
-    oneVehDist[0] = oneVehDist[0] + D[(oneVehDist[1][-1])-1][source_node-1]
-    oneVehDist[1] = oneVehDist[1] + (source_node,)
-    print("\nAppended Depot")
-    print(oneVehDist[0])
-    print(oneVehDist[1])
+    # POPULATE THE NODES TO REMOVE
+    for j in range(1, eatdata.n+1):
+        if(not (j in veh_agnmt[i])):
+            nodestoRemove.append(j-1)
+    #nodestoRemove = [2,4]       
+    #print(nodestoRemove)
+    
+    new_graph = [[D[a][b] for b in range(len(D[a])) if b not in nodestoRemove] for a in range(len(D)) if a not in nodestoRemove]
+    
+    #print(new_graph)
+    findMinRoute(new_graph)
+    print()
+    
+    nodestoRemove = []
+    
 
-# oneVehDist = travellingSalesmanProblem(D, veh_agnmt[2], source_node)
-# print("Unappended Depot")
-# print(oneVehDist[0])
-# print(oneVehDist[1])
-
-
-#oneVehDist[1][-1]
-print(D[source_node][oneVehDist[1][-1]])
-print(D[oneVehDist[1][-1]][source_node])
-# print(oneVehDist[1][-1])
-
-# oneVehDist[0] = oneVehDist[0] + D[oneVehDist[1][-1]][source_node]
-# oneVehDist[1] = oneVehDist[1] + (source_node,)
-
-# print("\nAppended Depot")
-# print(oneVehDist[0])
-# print(oneVehDist[1])
 

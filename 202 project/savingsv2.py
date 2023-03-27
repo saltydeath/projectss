@@ -1,4 +1,4 @@
-
+import time
 import eatdata
 
 def compute_savings(D):
@@ -20,6 +20,7 @@ def compute_savings(D):
 # N is the number of nodes including the depot
 
 def parallel_savings_init(D, d, C):
+    start_time = time.perf_counter()
     N = len(D)
     
     ## 1. make route for each customer
@@ -92,6 +93,9 @@ def parallel_savings_init(D, d, C):
         print("Total distance:",'%.4f'%route_costs[i])
         print("Total weight: ",route_demands[i])
         print()
+    end_time = time.perf_counter()
+    elapsed_time = end_time - start_time
+    print('Total elapsed time: %.4f s' % elapsed_time)
     return 
 
 D = eatdata.dist_arr

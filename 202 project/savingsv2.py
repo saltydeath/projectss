@@ -96,7 +96,10 @@ def parallel_savings_init(D, d, C):
     #O(N) for loop through routes
     for i in range(0, len(routes)):
      if routes[i] != None:
-        print("Route:",routes[i])
+        print("Route: [1,", end=' ')
+        for j in range(len(routes[i])):
+            print(routes[i][j], end=', ')
+        print("1]")
         print("Total distance:",'%.4f'%route_costs[i])
         print("Total weight: ",route_demands[i])
         print()

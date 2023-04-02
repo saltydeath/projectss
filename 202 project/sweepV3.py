@@ -45,7 +45,7 @@ def sort_locations(node_arr):
 
 
 # Branch and Bound TSP code consists of copyToFinal, firstMin, secondMin, TSPRec, and TSP
-# To execute one instance of TSP branch and bound, worse case time complexity is O(n!) if no nodes are pruned
+# Worse case time complexity is O(n!) if no nodes are pruned when executing one instance of TSP branch and bound
 def copyToFinal(curr_path):
 	final_path[:N + 1] = curr_path[:]
 	final_path[N] = curr_path[0]
@@ -136,7 +136,6 @@ def TSP(adj, N):
 	
 
 # Main portion of code starts here, where data for all locations are extracted
-
 start_time = time.perf_counter()
 node_arr = []
 source_node = int(eatdata.source_node)
@@ -211,7 +210,7 @@ for i in range(1, len(node_t)):
 nodestoRemove = []
 new_graph = []
 
-# Overall complexiy: 
+# Overall complexiy of Step 4: n * n! 
 for i in range(len(veh_agnmt)):
     
 	# Finding irrelevant locations' time complexity: O(n)
@@ -230,7 +229,10 @@ for i in range(len(veh_agnmt)):
 
     final_res = maxsize
 
+	# Worst case time complexity of one TSP call: O(n!)
     TSP(new_graph, N)
+    
+    # Time complexity for array sort: O(nlogn)
     veh_agnmt[i].sort()
     ascList = veh_agnmt[i]
 

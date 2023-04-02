@@ -216,6 +216,7 @@ for i in range(len(veh_agnmt)):
 end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 print('Total elapsed time: %.4f s' % elapsed_time)
+print('Total number of vehicles needed:', len(veh_agnmt))
     
     
 

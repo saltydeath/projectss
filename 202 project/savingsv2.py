@@ -108,8 +108,8 @@ def parallel_savings_init(D, d, C):
 
     end_time = time.perf_counter()
     elapsed_time = end_time - start_time
-    print('Total number of routes: %d' % r)
     print('Total elapsed time: %.4f s' % elapsed_time)
+    print('Total number of vehicles needed: %d' % r)
     return 
 #Overall complexity is O(N^3)
 

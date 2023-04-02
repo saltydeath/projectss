@@ -94,8 +94,10 @@ def parallel_savings_init(D, d, C):
         routes[right_route] = None    
         
     #O(N) for loop through routes
+    r = 0
     for i in range(0, len(routes)):
      if routes[i] != None:
+        r += 1
         print("Route: [1,", end=' ')
         for j in range(len(routes[i])):
             print(routes[i][j], end=', ')
@@ -106,6 +108,7 @@ def parallel_savings_init(D, d, C):
 
     end_time = time.perf_counter()
     elapsed_time = end_time - start_time
+    print('Total number of routes: %d' % r)
     print('Total elapsed time: %.4f s' % elapsed_time)
     return 
 #Overall complexity is O(N^3)

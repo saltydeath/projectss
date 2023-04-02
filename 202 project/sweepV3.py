@@ -210,7 +210,7 @@ for i in range(1, len(node_t)):
 nodestoRemove = []
 new_graph = []
 
-# Overall complexiy of Step 4: n * n! 
+# Overall complexiy of Step 4: s * n! where s is the number of vehicles and n is the number of locations
 for i in range(len(veh_agnmt)):
     
 	# Finding irrelevant locations' time complexity: O(n)

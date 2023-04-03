@@ -16,7 +16,7 @@ def distance_array(arr, n):
 
 #THIS IS MAIN, READS XML
 # Reading the data inside the xml
-with open('n101-k14.xml', 'r') as f:
+with open('n076-k14.xml', 'r') as f:
     data = f.read()
  
 # Passing the stored data inside the beautifulsoup parser, storing the returned object
